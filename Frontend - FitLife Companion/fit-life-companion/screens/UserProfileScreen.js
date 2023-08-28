@@ -9,6 +9,11 @@ const UserProfileScreen = () => {
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
 
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
+  const [email, setEmail] = useState('');
+  const [contactNummber, setContactNummber] = useState('');
+
   const handleSaveProfile = () => {
     // Logic to save the profile details
   };
@@ -30,6 +35,26 @@ const UserProfileScreen = () => {
         placeholder="Gender"
         value={gender}
         onChangeText={setGender}
+      />
+      <TextInput style={styles.input}
+        placeholder="Height"
+        value={height }
+        onChangeText={setHeight }
+      />
+      <TextInput style={styles.input}
+        placeholder="Weight"
+        value={weight }
+        onChangeText={setWeight }
+      />
+      <TextInput style={styles.input}
+        placeholder="Email"
+        value={email }
+        onChangeText={setEmail }
+      />
+      <TextInput style={styles.input}
+        placeholder="ContactNummber"
+        value={contactNummber }
+        onChangeText={setContactNummber }
       />
       <Button title="Save" onPress={handleSaveProfile} />
     </View>
