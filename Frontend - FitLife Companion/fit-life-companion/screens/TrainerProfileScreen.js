@@ -23,7 +23,7 @@ const TrainerProfileScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Trainer Profile Screen</Text>
+      <Text style={styles.title}>Trainer Profile Screen</Text>
       <TextInput style={styles.input}
         placeholder="Name"
         value={name}

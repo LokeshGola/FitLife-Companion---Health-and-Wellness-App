@@ -1,25 +1,34 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Picker, StyleSheet  } from 'react-native';
 
-import { useUserProfile } from '../contexts/UserProfileContext'; // Update the path
-import { useGoalContext } from '../contexts/GoalContext'; // Update the path to your goal context
+// import { useUserProfile } from '../contexts/UserProfileContext'; // Update the path
+import { useGoalContext } from '../contexts/GoalContext'; 
 
 
 const GoalSettingScreen = ({ navigation }) => {  // updated { navigation } here;
 
-  const { profile } = useUserProfile();
-  const { goal, updateGoal } = useGoalContext(); // Not implemented yet;
-
+  // const { profile } = useUserProfile();
+  const { goal, updateGoal } = useGoalContext(); 
   const [goalType, setGoalType] = useState(goal.type);
   const [goalTarget, setGoalTarget] = useState(goal.target);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSaveGoal = () => {
     // Save goal information to state management or database
+
+    if (!goalType || !goalTarget) {
+      setErrorMessage('Please fill in all fields.');
+      return;
+    }
+
     updateGoal({
       ...goal,
       type: goalType,
       target: goalTarget,
     });
+
+    // Reset error message
+    setErrorMessage('');
   };
 
 
@@ -45,8 +54,9 @@ const GoalSettingScreen = ({ navigation }) => {  // updated { navigation } here;
 
   return (
     <View style={styles.container}>
-      <Text>Goal Setting Screen</Text>
-      <Picker style={styles.input}
+      <Text style={styles.title}>Goal Setting</Text>
+      <Text style={styles.errorText}>{errorMessage}</Text>
+      <Picker style={styles.picker}
         selectedValue={goalType}
         onValueChange={(itemValue) => setGoalType(itemValue)}
         >
@@ -70,24 +80,63 @@ const GoalSettingScreen = ({ navigation }) => {  // updated { navigation } here;
         onChangeText={setGoalTimeline}
       />
       {/* <br/> */}
-      <Button title="Set Goal" onPress={handleSetGoal} />
+      {/* <Button title="Set Goal" onPress={handleSetGoal} /> */}
+      <Button title="Save Goal" onPress={handleSaveGoal} />
+      <br/>
+      <Button title="Go to Activity Logging" onPress={() => navigation.navigate('ActivityLoggingScreen')} /> 
+
       {/* <br/> */}
     </View>
   );
 };
 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   input: {
+//     width: '80%',
+//     height: 40,
+//     borderWidth: 1,
+//     marginBottom: 10,
+//     paddingHorizontal: 10,
+//   },
+//   errorText: {
+//     color: 'red',
+//     marginBottom: 10,
+//   },
+// });
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
   },
   input: {
-    width: '80%',
-    height: 40,
+    marginBottom: 15,
+    padding: 10,
     borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    backgroundColor: 'white',
+  },
+  picker: {
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    backgroundColor: 'white',
+  },
+  errorText: {
+    color: 'red',
     marginBottom: 10,
-    paddingHorizontal: 10,
   },
 });
 
