@@ -1,30 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Picker, StyleSheet  } from 'react-native';
 
-// import { useUserProfile } from '../contexts/UserProfileContext'; // Update the path
-// import { useGoalContext } from './path/to/GoalContext'; // Update the path to your goal context
+import { useUserProfile } from '../contexts/UserProfileContext'; // Update the path
+import { useGoalContext } from '../contexts/GoalContext'; // Update the path to your goal context
 
 
 const GoalSettingScreen = ({ navigation }) => {  // updated { navigation } here;
 
-  // const { profile } = useUserProfile();
-  // const { goal, updateGoal } = useGoalContext(); // Not implemented yet;
+  const { profile } = useUserProfile();
+  const { goal, updateGoal } = useGoalContext(); // Not implemented yet;
 
-  // const [goalType, setGoalType] = useState(goal.type);
-  // const [goalTarget, setGoalTarget] = useState(goal.target);
+  const [goalType, setGoalType] = useState(goal.type);
+  const [goalTarget, setGoalTarget] = useState(goal.target);
 
-  // const handleSaveGoal = () => {
-  //   // Save goal information to state management or database
-  //   updateGoal({
-  //     ...goal,
-  //     type: goalType,
-  //     target: goalTarget,
-  //   });
-  // };
+  const handleSaveGoal = () => {
+    // Save goal information to state management or database
+    updateGoal({
+      ...goal,
+      type: goalType,
+      target: goalTarget,
+    });
+  };
 
 
-  const [goalType, setGoalType] = useState('');
-  const [goalTarget, setGoalTarget] = useState('');
+  // const [goalType, setGoalType] = useState('');
+  // const [goalTarget, setGoalTarget] = useState('');
   const [goalTimeline, setGoalTimeline] = useState('');
 
   const [goalSet, setGoalSet] = useState(false);
