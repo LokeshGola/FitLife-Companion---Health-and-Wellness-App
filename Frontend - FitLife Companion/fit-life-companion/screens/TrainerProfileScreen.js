@@ -1,15 +1,15 @@
+
 import React, { useState } from 'react';
-import { View, Text, TextInput, Picker, Button, StyleSheet } from 'react-native';
-import { useUserProfile } from '../contexts/UserProfileContext'; // Update the path
+import { View, Text, TextInput, Button, Picker } from 'react-native';
+
+import { StyleSheet } from 'react-native';
 
 
-const UserProfileScreen = () => {
+const TrainerProfileScreen = () => {
   const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState(''); //Default value
-
-  const [height, setHeight] = useState('');
-  const [weight, setWeight] = useState('');
+  const [gender, setGender] = useState(''); 
+  const [specialization, setSpecialization] = useState('');
+  const [experience, setExperience] = useState('');
   const [email, setEmail] = useState('');
   const [contactNummber, setContactNummber] = useState('');
 
@@ -18,32 +18,18 @@ const UserProfileScreen = () => {
     // Save profile information to state management or database
     // For now, you can just log the values
     console.log('Name:', name);
-    console.log('Age:', age);
     console.log('Gender:', gender);
-
-    // Save profile information to the context
-    updateProfile({
-      ...profile,
-      name,
-      age,
-      gender,
-    });
-
   };
 
   return (
     <View style={styles.container}>
-      <Text>User Profile Screen</Text>
+      <Text>Trainer Profile Screen</Text>
       <TextInput style={styles.input}
         placeholder="Name"
         value={name}
         onChangeText={setName}
       />
-      <TextInput style={styles.input}
-        placeholder="Age"
-        value={age}
-        onChangeText={setAge}
-      />
+      
       {/* <TextInput style={styles.input}
         placeholder="Gender"
         value={gender}
@@ -60,14 +46,14 @@ const UserProfileScreen = () => {
         <Picker.Item label="Other" value="other" />
       </Picker>
       <TextInput style={styles.input}
-        placeholder="Height"
-        value={height }
-        onChangeText={setHeight }
+        placeholder="Specialization"
+        value={specialization }
+        onChangeText={setSpecialization }
       />
       <TextInput style={styles.input}
-        placeholder="Weight"
-        value={weight }
-        onChangeText={setWeight }
+        placeholder="Experience"
+        value={experience }
+        onChangeText={setExperience }
       />
       <TextInput style={styles.input}
         placeholder="Email"
@@ -125,4 +111,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default UserProfileScreen;
+export default  TrainerProfileScreen ;
