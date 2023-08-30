@@ -107,13 +107,33 @@ const ActivityLoggingScreen = ()=>{
     };
 
     return(
-        <View>
-            <Text>Welcome to the Fit-Life App !</Text>
+        <View style={styles.container}>
+            <Text style={styles.title}>Activity Log</Text>
             <Button title="Workout Log" onPress={navigateToWorkoutLogScreen} />
             <br/>
             <Button title="Nutrition Log" onPress={navigateToNutritionLogScreen} />
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      padding: 20,
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginBottom: 20,
+    },
+    input: {
+      marginBottom: 15,
+      padding: 10,
+      borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 5,
+      backgroundColor: 'white',
+    },
+  });
 
 export default ActivityLoggingScreen;
