@@ -10,6 +10,7 @@ import UserDashBoard from './UserDashBoard';
 import ActivityLoggingScreen from './ActivityLoggingScreen';
 import WorkoutLogScreen from './WorkoutLogScreen';
 import NutritionLogScreen from './NutritionLogScreen';
+import ProgressTrackingScreen from './ProgressTrackingScreen';
 
 import TrainerDashBoard from './TrainerDashBoard';
 import TrainerProfileScreen from './TrainerProfileScreen';
@@ -33,6 +34,7 @@ const MainNavigator = () => {
             <Stack.Screen name="ActivityLoggingScreen" component={ActivityLoggingScreen} />
             <Stack.Screen name="WorkoutLogScreen" component={WorkoutLogScreen} />
             <Stack.Screen name="NutritionLogScreen" component={NutritionLogScreen} />
+            <Stack.Screen name="ProgressTrackingScreen" component={ProgressTrackingScreen} />
 
             {/* screens for trainer  */}
             <Stack.Screen name="TrainerDashBoard" component={TrainerDashBoard} />

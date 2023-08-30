@@ -11,19 +11,23 @@ const UserDashBoard = ()=>{
     const navigateToUserProfileScreen = () => {
     navigation.navigate('UserProfileScreen'); // Navigate to UserProfileScreen
     };
-
     const navigateToGoalSettingScreen = () => {
-        navigation.navigate('GoalSettingScreen'); // Navigate to UserProfileScreen
+        navigation.navigate('GoalSettingScreen'); // Navigate to GoalSettingScreen
+    };
+    const navigateToProgressTrackingScreen = () => {
+        navigation.navigate('ProgressTrackingScreen'); // Navigate to ProgressTrackingScreen
     };
 
     return(
-        <View>
-            <Text style={styles.container}>Welcome User!</Text>
+        <View style={styles.container}>
+            <Text style={styles.title}>Welcome User!</Text>
 
             <br/>
             <Button title="Enter Profile Details" onPress={navigateToUserProfileScreen} />
             <br/>
             <Button title="Set Your Goal" onPress={navigateToGoalSettingScreen} />
+            <br/>
+            <Button title="Track Your Progress" onPress={navigateToProgressTrackingScreen} />
             <br/>
         </View>
     )
@@ -31,10 +35,14 @@ const UserDashBoard = ()=>{
 
 const styles = StyleSheet.create({
     container: {
-    //   textalign: "center",
-        flex: 1,
+        // flex: 1,
         justifyContent: 'center',
     },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+      },
     input: {
       width: '80%',
       height: 40,

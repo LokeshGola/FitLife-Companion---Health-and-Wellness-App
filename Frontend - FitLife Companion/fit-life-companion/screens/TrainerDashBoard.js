@@ -14,9 +14,8 @@ const TrainerDashBoard = ()=>{
     };
 
     return(
-        <View>
-            <Text style={styles.container}>Welcome Trainer!</Text>
-
+        <View style={styles.container}>
+            <Text style={styles.title}>Welcome Trainer!</Text>
             <br/>
             <Button title="Enter Profile Details" onPress={navigateToTrainerProfileScreen} />
             <br/>
@@ -30,6 +29,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+      },
     input: {
       width: '80%',
       height: 40,
