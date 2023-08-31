@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-// import { LineChart } from 'react-native-chart-kit'; // Import the chart library
+import { LineChart } from 'react-native-chart-kit'; // Import the chart library
+// import DatePicker from 'react-native-datepicker';
+
 
 const ProgressTrackingScreen = ({ navigation }) => {
   const [date, setDate] = useState('');
@@ -12,16 +14,16 @@ const ProgressTrackingScreen = ({ navigation }) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   // Mock data for the progress chart
-//   const progressData = {
-//     labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'], // Example labels
-//     datasets: [
-//       {
-//         data: [65, 67, 68.5, 70], // Example weight data
-//         color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`, // Blue color
-//         strokeWidth: 2, // Line width of the chart
-//       },
-//     ],
-//   };
+  const progressData = {
+    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'], // Example labels
+    datasets: [
+      {
+        data: [65, 67, 68.5, 70], // Example weight data
+        color: (opacity = 1) => `rgba(0, 0, 255, ${opacity})`, // Blue color
+        strokeWidth: 2, // Line width of the chart
+      },
+    ],
+  };
 
   const handleSaveProgressData=()=>{
     // Implement save progress logic here;
@@ -69,7 +71,9 @@ const ProgressTrackingScreen = ({ navigation }) => {
         onChangeText={setNotes}
         multiline
       />
-      {/* <View style={styles.chartContainer}>
+      <Button title="Save Progress" onPress={  handleSaveProgressData } />
+      <View style={styles.chartContainer}>
+        <Text style={styles.title}>Your last 4 weeks progress</Text>
         <LineChart
           data={progressData}
           width={300}
@@ -83,8 +87,8 @@ const ProgressTrackingScreen = ({ navigation }) => {
           }}
           bezier
         />
-      </View> */}
-      <Button title="Save Progress" onPress={  handleSaveProgressData } />
+      </View>
+      
     </View>
   );
 };
