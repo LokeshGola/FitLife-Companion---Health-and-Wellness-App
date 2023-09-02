@@ -240,3 +240,228 @@ def nutritionPlan_delete(request, pk):
     nutritionPlan.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+########### FitnessGoal ##########
+
+# List all fitnessGoal
+@api_view(['GET'])
+def fitnessGoal_list(request):
+    fitnessGoals = FitnessGoal.objects.all()
+    serializer = FitnessGoalSerializer(fitnessGoals, many=True)
+    return Response(serializer.data)
+
+# Get details of a specific fitnessGoal
+@api_view(['GET'])
+def fitnessGoal_detail(request, pk):
+    fitnessGoal = get_object_or_404(FitnessGoal, pk=pk)
+    serializer = FitnessGoalSerializer(fitnessGoal)
+    return Response(serializer.data)
+
+# Create a new fitnessGoal
+@api_view(['POST'])
+def fitnessGoal_create(request, userId):
+    try:
+        # Check if the specified User exists
+        user = User.objects.get(pk=userId)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'POST':
+        # Include the user ID in the data
+        request.data['user'] = userId   
+
+        # Create a fitnessGoal serializer with the modified data
+        serializer = FitnessGoalSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+# update an existing fitnessGoal
+@api_view(['PUT'])
+def fitnessGoal_update(request, pk):
+    fitnessGoal = get_object_or_404(FitnessGoal, pk=pk)
+    serializer = FitnessGoalSerializer(fitnessGoal, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# Delete a fitnessGoal
+@api_view(['DELETE'])
+def fitnessGoal_delete(request, pk):
+    fitnessGoal = get_object_or_404(FitnessGoal, pk=pk)
+    fitnessGoal.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+########### UserWorkoutLog ##########
+
+# List all userWorkoutLog
+@api_view(['GET'])
+def userWorkoutLog_list(request):
+    userWorkoutLogs = UserWorkoutLog.objects.all()
+    serializer = UserWorkoutLogSerializer(userWorkoutLogs, many=True)
+    return Response(serializer.data)
+
+# Get details of a specific userWorkoutLog
+@api_view(['GET'])
+def userWorkoutLog_detail(request, pk):
+    userWorkoutLog = get_object_or_404(UserWorkoutLog, pk=pk)
+    serializer = UserWorkoutLogSerializer(userWorkoutLog)
+    return Response(serializer.data)
+
+# Create a new userWorkoutLog
+@api_view(['POST'])
+def userWorkoutLog_create(request, userId, workoutPlanId):
+    try:
+        # Check if the specified User exists
+        user = User.objects.get(pk=userId)
+        workoutPlan = WorkoutPlan.objects.get(pk=workoutPlanId)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)    # if multi except would not work well then use a separate try-except block;
+    except WorkoutPlan.DoesNotExist:                                                          
+        return Response({'error': 'Workout Plan not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'POST':
+        # Include the user ID and workoutPlan Id in the data  
+        request.data['user'] = userId  
+        request.data['workout_plan'] = workoutPlanId   
+
+        # Create a userWorkoutLog serializer with the modified data
+        serializer = FitnessGoalSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+# update an existing userWorkoutLog
+@api_view(['PUT'])
+def userWorkoutLog_update(request, pk):
+    userWorkoutLog = get_object_or_404(UserWorkoutLog, pk=pk)
+    serializer = UserWorkoutLogSerializer(userWorkoutLog, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# Delete a userWorkoutLog
+@api_view(['DELETE'])
+def userWorkoutLog_delete(request, pk):
+    userWorkoutLog = get_object_or_404(UserWorkoutLog, pk=pk)
+    userWorkoutLog.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+########### UserNutritionLog ##########
+
+# List all userNutritionLog
+@api_view(['GET'])
+def userNutritionLog_list(request):
+    userNutritionLogs = UserNutritionLog.objects.all()
+    serializer = UserNutritionLogSerializer(userNutritionLogs, many=True)
+    return Response(serializer.data)
+
+# Get details of a specific userNutritionLog
+@api_view(['GET'])
+def userNutritionLog_detail(request, pk):
+    userNutritionLog = get_object_or_404(UserNutritionLog, pk=pk)
+    serializer = UserNutritionLogSerializer(userNutritionLog)
+    return Response(serializer.data)
+
+# Create a new userNutritionLog
+@api_view(['POST'])
+def userNutritionLog_create(request, userId, nutritionPlanId):
+    try:
+        # Check if the specified User exists
+        user = User.objects.get(pk=userId)
+        nutritionPlan = NutritionPlan.objects.get(pk=nutritionPlanId)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)    # if multi except would not work well then use a separate try-except block;
+    except NutritionPlan.DoesNotExist:                                                          
+        return Response({'error': 'Nutrition Plan not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'POST':
+        # Include the user ID and nutritionPlan Id in the data  
+        request.data['user'] = userId  
+        request.data['nutrition_plan'] = nutritionPlanId   
+
+        # Create a userNutritionLog serializer with the modified data
+        serializer = UserNutritionLog(data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# update an existing userNutritionLog
+@api_view(['PUT'])
+def userNutritionLog_update(request, pk):
+    userNutritionLog = get_object_or_404(UserNutritionLog, pk=pk)
+    serializer = UserNutritionLogSerializer(userNutritionLog, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# Delete a userNutritionLog
+@api_view(['DELETE'])
+def userNutritionLog_delete(request, pk):
+    userNutritionLog = get_object_or_404(UserNutritionLog, pk=pk)
+    userNutritionLog.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+########### ProgressTracking ##########
+
+# List all progressTracking
+@api_view(['GET'])
+def progressTracking_list(request):
+    progressTrackings = ProgressTracking.objects.all()
+    serializer = ProgressTrackingSerializer(progressTrackings, many=True)
+    return Response(serializer.data)
+
+# Get details of a specific progressTracking
+@api_view(['GET'])
+def progressTracking_detail(request, pk):
+    progressTracking = get_object_or_404(ProgressTracking, pk=pk)
+    serializer = ProgressTrackingSerializer(progressTracking)
+    return Response(serializer.data)
+
+# Create a new progressTracking
+@api_view(['POST'])
+def progressTracking_create(request, userId):
+    try:
+        # Check if the specified User exists
+        user = User.objects.get(pk=userId)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'POST':
+        # Include the user ID in the data
+        request.data['user'] = userId   
+
+        # Create a progressTracking serializer with the modified data
+        serializer = ProgressTrackingSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+# update an existing progressTracking
+@api_view(['PUT'])
+def progressTracking_update(request, pk):
+    progressTracking = get_object_or_404(ProgressTracking, pk=pk)
+    serializer = ProgressTrackingSerializer(progressTracking, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# Delete a progressTracking
+@api_view(['DELETE'])
+def progressTracking_delete(request, pk):
+    progressTracking = get_object_or_404(ProgressTracking, pk=pk)
+    progressTracking.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
