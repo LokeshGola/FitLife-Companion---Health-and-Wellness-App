@@ -23,4 +23,12 @@ urlpatterns = [
     path('workoutplans/update/<int:pk>/', views.workoutPlan_update, name='workoutPlan_update'),
     path('workoutplans/delete/<int:pk>/', views.workoutPlan_delete, name='workoutPlan_delete'),
 
+    # URL patterns for the NutritionPlan entity
+    path('nutrition_plans/', views.nutritionPlan_list, name='nutritionPlan_list'),
+    path('nutrition_plans/<int:pk>/', views.nutritionPlan_detail, name='nutritionPlan_detail'),
+
+    path('nutrition_plans/create/<int:trainerId>/', views.nutritionPlan_create, name='nutritionPlan_create'),
+    path('nutrition_plans/update/<int:pk>/', views.nutritionPlan_update, name='nutritionPlan_update'),
+    path('nutrition_plans/delete/<int:pk>/', views.nutritionPlan_delete, name='nutritionPlan_delete'),
+
 ]

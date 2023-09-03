@@ -12,7 +12,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
- ###### User ######
+###### User ######
 
 # List all users
 @api_view(['GET'])
@@ -47,7 +47,7 @@ def user_update(request, pk):
         return Response(serializer.data)
     return Response(serializer.errors, status=400)
 
-# Delete a trainer
+# Delete a user
 @api_view(['DELETE'])
 def user_delete(request, pk):
     user = get_object_or_404(User, pk=pk)
@@ -55,7 +55,7 @@ def user_delete(request, pk):
     return Response(status=204)
 
 
- ######## Trainer ########
+######## Trainer ########
 
 # List all trainers
 @api_view(['GET'])
