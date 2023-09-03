@@ -192,7 +192,7 @@ def workoutPlan_delete(request, pk):
 @api_view(['GET'])
 def nutritionPlan_list(request):
     nutritionPlans = NutritionPlan.objects.all()
-    serializer = WorkoutPlanSerializer(nutritionPlans, many=True)
+    serializer = NutritionPlanSerializer(nutritionPlans, many=True)
     return Response(serializer.data)
 
 # Get details of a specific nutritionPlan
@@ -209,7 +209,7 @@ def nutritionPlan_create(request, trainerId):
         # Check if the specified Trainer exists
         trainer = Trainer.objects.get(pk=trainerId)
     except Trainer.DoesNotExist:
-        return Response({'error': 'Trainer not found'}, status=status.HTTP_404_NOT_FOUND)
+        return Response({'error': 'Trainer with id '+ str(trainerId) +' not found'}, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'POST':
         # Include the trainer ID in the data
@@ -227,6 +227,8 @@ def nutritionPlan_create(request, trainerId):
 @api_view(['PUT'])
 def nutritionPlan_update(request, pk):
     nutritionPlan = get_object_or_404(NutritionPlan, pk=pk)
+    # print(nutritionPlan) 
+    
     serializer = NutritionPlanSerializer(nutritionPlan, data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -329,7 +331,7 @@ def userWorkoutLog_create(request, userId, workoutPlanId):
         request.data['workout_plan'] = workoutPlanId   
 
         # Create a userWorkoutLog serializer with the modified data
-        serializer = FitnessGoalSerializer(data=request.data)
+        serializer = UserWorkoutLogSerializer(data=request.data)
         
         if serializer.is_valid():
             serializer.save()
@@ -387,7 +389,7 @@ def userNutritionLog_create(request, userId, nutritionPlanId):
         request.data['nutrition_plan'] = nutritionPlanId   
 
         # Create a userNutritionLog serializer with the modified data
-        serializer = UserNutritionLog(data=request.data)
+        serializer = UserNutritionLogSerializer(data=request.data)
         
         if serializer.is_valid():
             serializer.save()
