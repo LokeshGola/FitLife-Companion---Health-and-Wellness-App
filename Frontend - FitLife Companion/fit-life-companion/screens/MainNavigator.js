@@ -18,6 +18,11 @@ import Welcome from './welcome';
 
 import { GoalProvider } from '../contexts/GoalContext';
 
+import UserLoginScreen from './UserLoginScreen';
+import UserSignupScreen from './UserSignupScreen';
+import TrainerLoginScreen from './TrainerLoginScreen';
+import TrainerSignupScreen from './TrainerSignupScreen';
+
 const Stack = createStackNavigator();
 
 const MainNavigator = () => {
@@ -39,6 +44,13 @@ const MainNavigator = () => {
             {/* screens for trainer  */}
             <Stack.Screen name="TrainerDashBoard" component={TrainerDashBoard} />
             <Stack.Screen name="TrainerProfileScreen" component={TrainerProfileScreen} />
+
+            {/* screens for signup/login  */}
+          <Stack.Screen name="UserLoginScreen" component={UserLoginScreen} />
+          <Stack.Screen name="UserSignupScreen" component={UserSignupScreen} />
+          <Stack.Screen name="TrainerLoginScreen" component={TrainerLoginScreen} />
+          <Stack.Screen name="TrainerSignupScreen" component={TrainerSignupScreen} />
+
 
             
         </Stack.Navigator>
