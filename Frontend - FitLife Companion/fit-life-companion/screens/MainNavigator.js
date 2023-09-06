@@ -14,6 +14,9 @@ import ProgressTrackingScreen from './ProgressTrackingScreen';
 
 import TrainerDashBoard from './TrainerDashBoard';
 import TrainerProfileScreen from './TrainerProfileScreen';
+import WorkoutPlanScreen from './WorkoutPlanScreen';
+import NutritionPlanScreen from './NutritionPlanScreen';
+
 import Welcome from './welcome';
 
 import { GoalProvider } from '../contexts/GoalContext';
@@ -49,14 +52,14 @@ const MainNavigator = () => {
           {/* screens for trainer  */}
           <Stack.Screen name="TrainerDashBoard" component={TrainerDashBoard} />
           <Stack.Screen name="TrainerProfileScreen" component={TrainerProfileScreen} />
+          <Stack.Screen name="WorkoutPlanScreen" component={WorkoutPlanScreen} />
+          <Stack.Screen name="NutritionPlanScreen" component={NutritionPlanScreen} />
 
           {/* screens for signup/login  */}
           <Stack.Screen name="UserLoginScreen" component={UserLoginScreen} />
           <Stack.Screen name="UserSignupScreen" component={UserSignupScreen} />
           <Stack.Screen name="TrainerLoginScreen" component={TrainerLoginScreen} />
           <Stack.Screen name="TrainerSignupScreen" component={TrainerSignupScreen} />
-
-
 
         </Stack.Navigator>
       </NavigationContainer>

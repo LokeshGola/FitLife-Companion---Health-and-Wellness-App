@@ -36,7 +36,7 @@ const HomeScreen = () => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "space-around",
             marginTop: 20,
           }}
         >
@@ -46,52 +46,30 @@ const HomeScreen = () => {
                 textAlign: "center",
                 fontWeight: "bold",
                 color: "white",
-                fontSize: 18,
+                fontSize: 22,
               }}
               onPress={() => {
                 navigation.navigate('UserDashBoard'); // Navigate to UserDashBoardScreen
               }}
             >
               User
-              {/* {workout} */}
             </TouchableOpacity>
-            {/* <Text style={{ color: "#D0D0D0", fontSize: 17, marginTop: 6 }}>
-              WORKOUTS
-            </Text> */}
           </View>
 
           <View>
-            <Text
+            <TouchableOpacity
               style={{
                 textAlign: "center",
                 fontWeight: "bold",
                 color: "white",
-                fontSize: 18,
+                fontSize: 22,
+              }}
+              onPress={() => {
+                navigation.navigate('TrainerDashBoard'); // Navigate to TrainerDashBoard;
               }}
             >
-              0
-              {/* {calories} */}
-            </Text>
-            <Text style={{ color: "#D0D0D0", fontSize: 17, marginTop: 6 }}>
-              KCAL
-            </Text>
-          </View>
-
-          <View>
-            <Text
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                color: "white",
-                fontSize: 18,
-              }}
-            >
-              0
-              {/* {minutes} */}
-            </Text>
-            <Text style={{ color: "#D0D0D0", fontSize: 17, marginTop: 6 }}>
-              MINS
-            </Text>
+              Trainer
+            </TouchableOpacity>
           </View>
         </View>
 

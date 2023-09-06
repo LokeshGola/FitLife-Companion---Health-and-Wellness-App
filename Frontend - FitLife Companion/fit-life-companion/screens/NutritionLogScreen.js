@@ -13,7 +13,7 @@ const NutritionLogScreen = ({ navigation }) => {
   const [successMessage, setSuccessMessage] = useState('');
 
   const handleSaveLog = async () => {
-    if (!date || !selectedPlan || !meals || !caloricIntake || userId) {
+    if (!date || !selectedPlan || !meals || !caloricIntake || !userId) {
       setErrorMessage('Please fill in all fields.');
       return;
     }
@@ -101,7 +101,7 @@ const NutritionLogScreen = ({ navigation }) => {
         keyboardType="numeric"
       />
       <Button title="Save Nutrition Log" onPress={handleSaveLog} />
-      <br/>
+      <br />
       <Text style={styles.successText}>{successMessage}</Text>
     </View>
   );
@@ -138,11 +138,11 @@ const styles = StyleSheet.create({
     color: 'red',
     marginBottom: 10,
   },
-  successText:{
+  successText: {
     fontWeight: "bold",
-    fontSize:20,
+    fontSize: 20,
     marginBottom: 10,
-    color:"green"
+    color: "green"
   },
 });
 

@@ -20,10 +20,6 @@ const UserProfileScreen = () => {
   const handleSaveProfile = async () => {
     // // Logic to save the profile details
     // // Save profile information to state management or database
-    // // For now, you can just log the values
-    // console.log('Name:', name);
-    // console.log('Age:', age);
-    // console.log('Gender:', gender);
 
     // // Save profile information to the context
     // updateProfile({
@@ -136,6 +132,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: "#edecd8"
   },
   title: {
     fontSize: 24,
@@ -143,17 +140,19 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   input: {
-    marginBottom: 10,
+    marginBottom: 15,
     padding: 10,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
+    backgroundColor: 'white',
   },
   picker: {
-    marginBottom: 10,
+    marginBottom: 15,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
+    backgroundColor: 'white',
   },
   errorText: {
     color: 'red',
@@ -166,6 +165,5 @@ const styles = StyleSheet.create({
     color:"green"
   },
 });
-
 
 export default UserProfileScreen;
