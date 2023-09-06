@@ -259,7 +259,7 @@ def fitnessGoal_detail(request, pk):
     serializer = FitnessGoalSerializer(fitnessGoal)
     return Response(serializer.data)
 
-# Create a new fitnessGoal
+# Create a new fitnessGoal with userId
 @api_view(['POST'])
 def fitnessGoal_create(request, userId):
     try:
@@ -279,6 +279,7 @@ def fitnessGoal_create(request, userId):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     
 # update an existing fitnessGoal
 @api_view(['PUT'])
