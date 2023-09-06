@@ -11,7 +11,10 @@ const ProgressTrackingScreen = ({ navigation }) => {
   const [weight, setWeight] = useState('');
   const [bodyMeasurements, setBodyMeasurements] = useState('');
   const [notes, setNotes] = useState('');
+  const [userId, setUserId] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
 
   // Mock data for the progress chart
   const progressData = {
@@ -25,14 +28,43 @@ const ProgressTrackingScreen = ({ navigation }) => {
     ],
   };
 
-  const handleSaveProgressData=()=>{
+  const handleSaveProgressData = async () => {
     // Implement save progress logic here;
-    if (!date || !weight || !bodyMeasurements || !notes) {
-        setErrorMessage('Please fill in all fields.');
-        return;
-      }
+    if (!date || !weight || !bodyMeasurements || !notes || !userId) {
+      setErrorMessage('Please fill in all fields.');
+      return;
+    }
     // Implement save progress logic here;
+    try {
+      const response = await fetch(`http://localhost:8000/api/progressTrackings/create/${userId}/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          "date": date,
+          "weight": weight,
+          "body_measurements": bodyMeasurements,
+          "notes": notes
+        }),
+      });
+      console.log(response)
+      if (response.status === 201) {
+        console.log('Tracking saved successfully');
+        // You can navigate to another screen or perform any additional actions here
+        // alert("Profile saved successfully")
+        setSuccessMessage("Tracking saved successfully")
+      } else {
+        console.error('Error saving progress tracking. Status:', response.status);
+        const responseBody = await response.text();
+        console.error('Response body:', responseBody);
+        // alert("Something went wrong. Profile not saved.")
 
+        setSuccessMessage("Something went wrong. Tracking not saved successfully")
+      }
+    } catch (error) {
+      console.error('API request error:', error);
+    }
 
     // Reset error message
     setErrorMessage('');
@@ -66,12 +98,22 @@ const ProgressTrackingScreen = ({ navigation }) => {
       />
       <TextInput
         style={styles.input}
+        placeholder="Enter User Id"
+        value={userId}
+        onChangeText={setUserId}
+        keyboardType="numeric"
+      />
+      <TextInput
+        style={styles.input}
         placeholder="Notes"
         value={notes}
         onChangeText={setNotes}
         multiline
       />
-      <Button title="Save Progress" onPress={  handleSaveProgressData } />
+      <Button title="Save Progress" onPress={handleSaveProgressData} />
+      <br/>
+      <Text style={styles.successText}>{successMessage}</Text>
+      <br/>
       <View style={styles.chartContainer}>
         <Text style={styles.title}>Your last 4 weeks progress</Text>
         <LineChart
@@ -88,7 +130,7 @@ const ProgressTrackingScreen = ({ navigation }) => {
           bezier
         />
       </View>
-      
+
     </View>
   );
 };
@@ -118,6 +160,12 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     marginBottom: 10,
+  },
+  successText: {
+    fontWeight: "bold",
+    fontSize: 20,
+    marginBottom: 10,
+    color: "green"
   },
 });
 

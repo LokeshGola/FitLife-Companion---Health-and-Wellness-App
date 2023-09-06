@@ -11,29 +11,81 @@ const UserProfileScreen = () => {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [email, setEmail] = useState('');
-  const [contactNummber, setContactNummber] = useState('');
+  const [contact_number, setContact_number] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSaveProfile = () => {
-    // Logic to save the profile details
-    // Save profile information to state management or database
-    // For now, you can just log the values
-    console.log('Name:', name);
-    console.log('Age:', age);
-    console.log('Gender:', gender);
 
-    // Save profile information to the context
-    updateProfile({
-      ...profile,
-      name,
-      age,
-      gender,
-    });
+
+  const handleSaveProfile = async () => {
+    // // Logic to save the profile details
+    // // Save profile information to state management or database
+    // // For now, you can just log the values
+    // console.log('Name:', name);
+    // console.log('Age:', age);
+    // console.log('Gender:', gender);
+
+    // // Save profile information to the context
+    // updateProfile({
+    //   ...profile,
+    //   name,
+    //   age,
+    //   gender,
+    // });
+
+    if (!name || !age || !gender || !height || !weight || !email || !contact_number) {
+      setErrorMessage('Please fill in all fields.');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:8000/api/users/create/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          age,
+          gender,
+          height,
+          weight,
+          email,
+          contact_number,
+        }),
+      });
+      console.log(response)
+      if (response.status === 201) {
+        console.log('Profile saved successfully');
+        // You can navigate to another screen or perform any additional actions here
+        // alert("Profile saved successfully")
+        setSuccessMessage("Profile saved successfully")
+      } else {
+        console.error('Error saving profile. Status:', response.status);
+        const responseBody = await response.text();
+        console.error('Response body:', responseBody);
+        // alert("Something went wrong. Profile not saved.")
+        
+        if(responseBody.email==["user with this email already exists."]){
+          setSuccessMessage("user with this email already exists.")
+        }else{
+          setSuccessMessage("Something went wrong. Profile not saved successfully")
+        }
+        
+      }
+    } catch (error) {
+      console.error('API request error:', error);
+    }
+
+    // Reset error message
+    setErrorMessage('');
 
   };
 
   return (
     <View style={styles.container}>
-      <Text>User Profile Screen</Text>
+      <Text style={styles.title}>Enter Your Profile Details</Text>
+      <Text style={styles.errorText}>{errorMessage}</Text>
       <TextInput style={styles.input}
         placeholder="Name"
         value={name}
@@ -44,20 +96,14 @@ const UserProfileScreen = () => {
         value={age}
         onChangeText={setAge}
       />
-      {/* <TextInput style={styles.input}
-        placeholder="Gender"
-        value={gender}
-        onChangeText={setGender}
-      /> */}
-
       <Picker style={styles.picker}
         selectedValue={gender}
         onValueChange={(itemValue) => setGender(itemValue)}
         >
         <Picker.Item label="Select Gender" value="" />
-        <Picker.Item label="Male" value="male" />
-        <Picker.Item label="Female" value="female" />
-        <Picker.Item label="Other" value="other" />
+        <Picker.Item label="Male" value="Male" />
+        <Picker.Item label="Female" value="Female" />
+        <Picker.Item label="Other" value="Other" />
       </Picker>
       <TextInput style={styles.input}
         placeholder="Height"
@@ -75,29 +121,16 @@ const UserProfileScreen = () => {
         onChangeText={setEmail }
       />
       <TextInput style={styles.input}
-        placeholder="ContactNummber"
-        value={contactNummber }
-        onChangeText={setContactNummber }
+        placeholder="Contact Number"
+        value={contact_number }
+        onChangeText={setContact_number }
       />
       <Button title="Save" onPress={handleSaveProfile} />
+      <br/>
+      <Text style={styles.successText}>{successMessage}</Text>
     </View>
   );
 };
-
-// const styles = StyleSheet.create({
-//     container: {
-//       flex: 1,
-//       justifyContent: 'center',
-//       alignItems: 'center',
-//     },
-//     input: {
-//       width: '80%',
-//       height: 40,
-//       borderWidth: 1,
-//       marginBottom: 10,
-//       paddingHorizontal: 10,
-//     },
-//   });
 
 const styles = StyleSheet.create({
   container: {
@@ -121,6 +154,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
+  },
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
+  },
+  successText:{
+    fontWeight: "bold",
+    fontSize:20,
+    marginBottom: 10,
+    color:"green"
   },
 });
 

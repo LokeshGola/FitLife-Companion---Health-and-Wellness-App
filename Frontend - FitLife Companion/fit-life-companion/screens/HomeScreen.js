@@ -1,35 +1,25 @@
-// import { StyleSheet, Text, View } from 'react-native'
-// import React from 'react'
-
-// const HomeScreen = () => {
-//   return (
-//     <View>
-//       <Text>HomeScreen</Text>
-//     </View>
-//   )
-// }
-
-// export default HomeScreen
-
-// const styles = StyleSheet.create({})
 
 
-import { StyleSheet, Text, View, SafeAreaView, Image,ScrollView } from "react-native";
-import React ,{useContext} from "react";
+import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Pressable, TouchableOpacity } from "react-native";
+import React, { useContext } from "react";
 import FitnessCards from "../components/FitnessCards";
+import { useNavigation } from '@react-navigation/native';
 // import { FitnessItems } from "../Context";
 
 const HomeScreen = () => {
-//   const {
-   
-//     minutes,
-  
-//     calories,
+  //   const {
 
-//     workout,
-//   } = useContext(FitnessItems);
+  //     minutes,
+
+  //     calories,
+
+  //     workout,
+  //   } = useContext(FitnessItems);
+
+  const navigation = useNavigation();
+
   return (
-    <ScrollView style={{marginTop:40, backgroundColor:"#ebedd7"}}>
+    <ScrollView style={{ marginTop: 40, backgroundColor: "#ebedd7" }}>
       <View
         style={{
           backgroundColor: "#007c7c",
@@ -51,20 +41,23 @@ const HomeScreen = () => {
           }}
         >
           <View>
-            <Text
+            <TouchableOpacity
               style={{
                 textAlign: "center",
                 fontWeight: "bold",
                 color: "white",
                 fontSize: 18,
               }}
+              onPress={() => {
+                navigation.navigate('UserDashBoard'); // Navigate to UserDashBoardScreen
+              }}
             >
-                0
+              User
               {/* {workout} */}
-            </Text>
-            <Text style={{ color: "#D0D0D0", fontSize: 17, marginTop: 6 }}>
+            </TouchableOpacity>
+            {/* <Text style={{ color: "#D0D0D0", fontSize: 17, marginTop: 6 }}>
               WORKOUTS
-            </Text>
+            </Text> */}
           </View>
 
           <View>
@@ -76,7 +69,7 @@ const HomeScreen = () => {
                 fontSize: 18,
               }}
             >
-                0
+              0
               {/* {calories} */}
             </Text>
             <Text style={{ color: "#D0D0D0", fontSize: 17, marginTop: 6 }}>
@@ -93,7 +86,7 @@ const HomeScreen = () => {
                 fontSize: 18,
               }}
             >
-                0
+              0
               {/* {minutes} */}
             </Text>
             <Text style={{ color: "#D0D0D0", fontSize: 17, marginTop: 6 }}>
@@ -115,7 +108,7 @@ const HomeScreen = () => {
             }}
           />
         </View>
-        <FitnessCards/>
+        <FitnessCards />
       </View>
     </ScrollView>
   );

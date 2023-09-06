@@ -7,6 +7,7 @@ export const GoalProvider = ({ children }) => {
   const [goal, setGoal] = useState({
     type: '',
     target: '',
+    timeline:'',
   });
 
   const updateGoal = (newGoal) => {
