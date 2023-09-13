@@ -23,6 +23,9 @@ Watch our guided video walkthrough: **[Link to Feature Walkthrough](https://yout
 - Designed for simplicity and intuitive user experience for demonstration purposes.
 - Assumption: Simplified navigation process for the sake of this demo.
 
+## **ER Diagram**
+![Fit-life ER diagram](https://github.com/LokeshGola/FitLife-Companion---Health-and-Wellness-App/assets/112959514/7c47216e-9ce9-4412-8b4a-f2a083be676a)
+
 ## **Installation & Getting Started**
 
 1. Clone the repository: **`git clone <https://github.com/LokeshGola/FitLife-Companion---Health-and-Wellness-App>`**
