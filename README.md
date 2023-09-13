@@ -46,20 +46,37 @@ Watch our guided video walkthrough: **[Link to Feature Walkthrough](https://yout
 
 ## **API Endpoints**
 
-### **Authentication**
 
-- **`POST /api/auth/register`** - Register a new user.
-- **`POST /api/auth/login`** - Log in an existing user.
+### **Users**
 
-### **Species**
+- **`GET /api/users/`** - Retrieve all users.
+- **`GET /api/users/:id`** - Retrieve users details.
+- **`POST /api/users/create/`** - Create user profile.
 
-- **`GET /api/species`** - Retrieve all species.
-- **`GET /api/species/:id`** - Retrieve species details.
+### **Goal Setting**
 
-### **Habitats**
+- **`GET /api/fitnessGoals/create/<int:userId>/`** - Users set the goals.
 
-- **`GET /api/habitats`** - Retrieve all habitats.
-- **`GET /api/habitats/:id`** - Retrieve habitat details.
+### **Activity Logging**
+
+- **`GET /api/userWorkoutLogs/create/<int:userId>/<int:workoutPlanId>/`** - Users create workout log.
+- - **`GET /api/userNutritionLogs/create/<int:userId>/<int:nutritionPlanId>/`** - Users create nutrition log.
+
+### **Progress Tracking**
+
+- **`GET /api/progressTrackings/create/<int:userId>/`** - Users create progress tracking.
+
+### **Trainers**
+
+- **`GET /api/trainers/`** - Retrieve all trainers.
+- **`GET /api/trainers/:id`** - Retrieve trainers details.
+- **`POST /api/trainers/create/`** - Create trainers profile.
+
+### **Plans for users**
+
+- **`GET /api/workoutplans/create/<int:trainerId>/`** - Trainers create workout plans for users.
+- - **`GET /api/nutrition_plans/create/<int:trainerId>/`** - Trainers create nutrition plans for users.
+
 
 ... (include more API endpoints as needed)
 
