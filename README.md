@@ -6,9 +6,6 @@
 
 Welcome to FitLife-Companion: Health and Wellness App, your gateway to the fascinating world of Fitness exploration. This guide will walk you through the key features of the platform, helping you embark on an fitness journey like no other.
 
-## **Platform Access**
-
-Access the ExploreNature platform through **[https://explorenature-demo.com](https://explorenature-demo.com/)**
 
 ## **Feature Walkthrough**
 
@@ -16,12 +13,10 @@ Watch our guided video walkthrough: **[Link to Feature Walkthrough](https://yout
 
 ## **Key Features**
 
-- Learn About Various Species
-- Dive Into Diverse Habitats
-- Challenge Yourself with Interactive Quizzes
-- Embark on a Virtual Nature Tour
-- Interact with Simulated AI Nature Guide
-- Discover Fun Facts About Nature
+- Trainers create workout and nutrition plans for users
+- Users can set the goals for fitness purpose
+- Users can select workout and nutrition plans according to the goal
+- Users can track the progress 
 
 ## **Design Approach and Assumptions**
 
@@ -33,16 +28,9 @@ Watch our guided video walkthrough: **[Link to Feature Walkthrough](https://yout
 1. Clone the repository: **`git clone <https://github.com/LokeshGola/FitLife-Companion---Health-and-Wellness-App>`**
 2. Install dependencies: **`npm install`**
 3. Start the guided tour: **`npm start`**
+4. For backend, run 'python manage.py runserver'
 
-## **User Journey**
 
-1. Log in using provided credentials.
-2. Explore the diverse species database.
-3. Dive into various habitats and their unique features.
-4. Engage in interactive quizzes to test your knowledge.
-5. Embark on a virtual nature tour, exploring captivating stops.
-6. Have fun interacting with our AI nature guide.
-7. Enjoy a random nature fact whenever you'd like.
 
 ## **API Endpoints**
 
@@ -75,14 +63,13 @@ Watch our guided video walkthrough: **[Link to Feature Walkthrough](https://yout
 ### **Plans for users**
 
 - **`GET /api/workoutplans/create/<int:trainerId>/`** - Trainers create workout plans for users.
-- - **`GET /api/nutrition_plans/create/<int:trainerId>/`** - Trainers create nutrition plans for users.
+- **`GET /api/nutrition_plans/create/<int:trainerId>/`** - Trainers create nutrition plans for users.
 
 
-... (include more API endpoints as needed)
 
 ## **Technology Stack**
 
-- Front-end: React-Native
+- Front-end: React-Native, JavaScript
 - Back-end: Django, Python
 - Database: MySQL
 
