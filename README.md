@@ -4,7 +4,7 @@
 
 ## **Introduction**
 
-Welcome to FitLife-Companion: Health and Wellness App, your gateway to the fascinating world of Fitness exploration. This guide will walk you through the key features of the platform, helping you embark on an fitness journey like no other.
+Welcome to FitLife-Companion: Health and Wellness App, your gateway to the fascinating world of Fitness exploration. Basically, this is an online app for gym lovers that helps them stay fit and cool. This guide will walk you through the key features of the platform, helping you embark on a fitness journey like no other.
 
 
 ## **Feature Walkthrough**
